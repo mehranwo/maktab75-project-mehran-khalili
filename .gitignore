@@ -10,10 +10,6 @@
 /src/services
 /src/styles
 /src/rtl.js
-/server.js
-/db.json
-/uploads
-/server
 /.pnp
 .pnp.js
 

@@ -2,14 +2,6 @@
 
 # dependencies
 /node_modules
-/src/components
-/src/api
-/src/configs
-/src/pages
-/src/Routes
-/src/services
-/src/styles
-
 /.pnp
 .pnp.js
 

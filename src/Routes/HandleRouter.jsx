@@ -5,6 +5,7 @@ import Home from '../pages/Home'
 import Login from '../pages/Login/LoginPage'
 // import Product from 'pages/product/Product'
 // import ResultBuy from 'pages/resultBuy/ResultBuy'
+import { ManagmentProducts } from '../pages/managment'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
@@ -13,6 +14,7 @@ export default function HandleRouter() {
     <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>} />
+        <Route path='/admin' element={<ManagmentProducts/>}/>
         {/* 
         <Route path='/buyPage' element={<BuyPage/>} />
         <Route path='/finalBuy' element={<FinalBuy/>} />

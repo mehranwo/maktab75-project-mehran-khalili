@@ -83,7 +83,7 @@ export const ManagmentProducts = () => {
               <Grid item xs={1}></Grid>
               <Grid item xs={8}>
               {
-                  field == 'orders' && 
+                  field === 'orders' && 
                   (
                   <>
                     <Button onClick={(e)=>{
@@ -95,7 +95,7 @@ export const ManagmentProducts = () => {
                   </>
                   ) 
                 }
-                <BasicTable rows={data.products}  columns={field == "products" ?( productsHeader) : (field == "stock" ? stockHeader : ordersHeader ) } />
+                <BasicTable rows={data.products}  columns={field === "products" ?( productsHeader) : (field === "stock" ? stockHeader : ordersHeader ) } />
                 <Box sx={{marginTop:'10px', display:'flex',gap:1}}>
                   <Button onClick={(e)=>{
                     changePage(e.target.textContent)

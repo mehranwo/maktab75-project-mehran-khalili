@@ -19,7 +19,7 @@ export const PromotionsContainer = styled(Box)(({theme})=>({
 
 export const MessageText = styled(Typography)(({theme})=>({
     [theme.breakpoints.up('md')]:{
-        fontSize:"3rem",
+        fontSize:"2.5rem",
     },
     color:Colors.white,
     fontSize:"1.5rem"

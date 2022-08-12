@@ -22,5 +22,5 @@ export const MessageText = styled(Typography)(({theme})=>({
         fontSize:"2.5rem",
     },
     color:Colors.white,
-    fontSize:"1.5rem"
+    fontSize:"1rem"
 })) 

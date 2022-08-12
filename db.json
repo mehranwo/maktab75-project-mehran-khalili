@@ -1,5 +1,18 @@
 {
-  "admin": { "username": "admin", "password": "adimn" },
+  "admin": { "username": "admin", "password": "admin" },
+  "category":[
+    {
+      "name":"مردانه",
+      "id":1
+    }
+  ],
+  "subCategory":[
+    {
+      "name":"شلوار",
+      "id":1,
+      "parent":1
+    }
+  ],
   "orders": [
     { 
     "name": "محمدرضایی" ,

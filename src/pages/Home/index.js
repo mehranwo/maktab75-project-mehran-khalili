@@ -23,7 +23,6 @@ const Home = () => {
           <Appbar />
           <Banner />
           <Promotions />
-          <ManagmentProducts />
         </Container>
       </RTL>
     </ThemeProvider>

@@ -36,7 +36,7 @@ export default function Banner() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <BannerContainer src="../server/uploads/a82cf92477ca81301768f28a546d2183.jpg">
+          <BannerContainer src="/images/banner/backpack.jpg">
             <BannerContent>
               <Typography variant="h6">Huge Collection</Typography>
               <BannerTitle variant="h2">New Bags</BannerTitle>

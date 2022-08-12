@@ -9,6 +9,7 @@ import Banner from "../../components/banner";
 import Promotions from "../../components/promotions";
 import { ManagmentProducts } from "../../pages/managment";
 import RTL from "../../rtl";
+import Products from "../../components/products";
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
           <Appbar />
           <Banner />
           <Promotions />
+          <Products/>
         </Container>
       </RTL>
     </ThemeProvider>

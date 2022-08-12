@@ -12,22 +12,24 @@ export const BannerContainer = styled(Box)(({ theme, src }) => ({
   backgroundImage: `url(${src})`,
   backgroundSize: "cover",
   backgroundRepeat:"no-repeat",
+  [theme.breakpoints.down("md")]:{
+    backgroundSize: "contain",
+    height: "350px",
+    width:"370px"
+  },
   [theme.breakpoints.down("sm")]: {
     backgroundSize: "contain",
-    alignItems: "flex-end",
+    height: "200px",
   },
 }));
 
 export const BannerImage = styled("img")(({ src, theme }) => ({
   src: `url(${src})`,
-  width: "500px",
+  width: "100%",
   height:"600px",
-  [theme.breakpoints.down("md")]: {
-    width: "350px",
-  },
   [theme.breakpoints.down("sm")]: {
-    width: "320px",
-    height: "300px",
+    width: "200px",
+    height: "400px",
   },
 }));
 

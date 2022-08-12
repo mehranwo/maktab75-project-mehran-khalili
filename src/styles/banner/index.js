@@ -7,7 +7,7 @@ export const BannerContainer = styled(Box)(({ theme, src }) => ({
   display: "flex",
   justifyContent: "flex-end",
   width: "100%",
-  height: "100%",
+  height: "600px",
   padding: "0px 0px",
   backgroundImage: `url(${src})`,
   backgroundSize: "cover",
@@ -21,6 +21,7 @@ export const BannerContainer = styled(Box)(({ theme, src }) => ({
 export const BannerImage = styled("img")(({ src, theme }) => ({
   src: `url(${src})`,
   width: "500px",
+  height:"600px",
   [theme.breakpoints.down("md")]: {
     width: "350px",
   },

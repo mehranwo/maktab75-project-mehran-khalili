@@ -18,6 +18,7 @@ export default function Actions({matches}) {
     <Component>
       <MyList type="row">
         <ListItemButton
+        to={"/buyPage"}
           sx={{
             justifyContent: "center",
           }}
@@ -52,6 +53,7 @@ export default function Actions({matches}) {
         {/* <ListItemLink to="/login" primary="" icon={<PersonIcon />}  /> */}
         <Divider orientation="vertical" flexItem />
         <ListItemButton
+        to={"/Favorite"}
           sx={{
             justifyContent: "center",
           }}

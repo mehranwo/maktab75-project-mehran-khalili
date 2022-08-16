@@ -1,56 +1,72 @@
 {
-  "admin": { "username": "admin", "password": "admin" },
-  "category":[
+  "users": [
     {
-      "name":"مردانه",
-      "id":1
+      "username": "mewo",
+      "firstName": "مهران",
+      "lastName": "خلیلی",
+      "password": "1234",
+      "email": "me.dr7725@gmail.com",
+      "phone": "09107798737",
+      "address": "سبلان",
+      "city": "تهران",
+      "state": "تهران",
+      "country": "ایران",
+      "role": "admin",
+      "createdAt": 1643375019984,
+      "id": 1
     }
   ],
-  "subCategory":[
+  "category": [
     {
-      "name":"شلوار",
-      "id":1,
-      "parent":1
+      "name": "مردانه",
+      "id": 1
+    }
+  ],
+  "subCategory": [
+    {
+      "name": "شلوار",
+      "id": 1,
+      "parent": 1
     }
   ],
   "orders": [
-    { 
-    "name": "محمدرضایی" ,
-    "sum":123600,
-    "status":true,
-    "time":"25/2/2012"
+    {
+      "name": "محمدرضایی",
+      "sum": 123600,
+      "status": true,
+      "time": "25/2/2012"
     },
-    { 
-    "name": "محمدرضایی" ,
-    "sum":123600,
-    "status":true,
-    "time":"25/2/2012"
+    {
+      "name": "محمدرضایی",
+      "sum": 123600,
+      "status": true,
+      "time": "25/2/2012"
     },
-    { 
-    "name": "علیرضا سالاری" ,
-    "sum":152300,
-    "status":false,
-    "time":"25/5/2022"
+    {
+      "name": "علیرضا سالاری",
+      "sum": 152300,
+      "status": false,
+      "time": "25/5/2022"
     },
-    { 
-    "name": "همایون شجریان" ,
-    "sum":236600,
-    "status":false,
-    "time":"9/2/2022"
+    {
+      "name": "همایون شجریان",
+      "sum": 236600,
+      "status": false,
+      "time": "9/2/2022"
     },
-    { 
-    "name":"شادمهر عقیلی" ,
-    "sum":457600,
-    "status":true,
-    "time":"5/10/2022"
+    {
+      "name": "شادمهر عقیلی",
+      "sum": 457600,
+      "status": true,
+      "time": "5/10/2022"
     },
-    { 
-    "name": "محسن یگانه" ,
-    "sum":781600,
-    "status":false,
-    "time":"14/8/2022"
+    {
+      "name": "محسن یگانه",
+      "sum": 781600,
+      "status": false,
+      "time": "14/8/2022"
     }
-],
+  ],
   "products": [
     {
       "id": 1,

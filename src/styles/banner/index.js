@@ -13,12 +13,12 @@ export const BannerContainer = styled(Box)(({ theme, src }) => ({
   backgroundSize: "cover",
   backgroundRepeat:"no-repeat",
   [theme.breakpoints.down("md")]:{
-    backgroundSize: "contain",
-    height: "350px",
-    width:"370px"
+    backgroundSize: "cover",
+    height: "400px",
+    width:"100%"
   },
   [theme.breakpoints.down("sm")]: {
-    backgroundSize: "contain",
+    backgroundSize: "cover",
     height: "200px",
   },
 }));

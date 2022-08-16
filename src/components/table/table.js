@@ -11,7 +11,7 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import { Typography } from "@mui/material";
 
-export default function BasicTable({ rows, columns }) {
+export default function BasicTable({ rows = [], columns = [] }) {
   const englishHeader = Object.keys(columns);
   const persionHeader = Object.values(columns);
 
@@ -27,7 +27,7 @@ export default function BasicTable({ rows, columns }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows
+          {rows.length > 0 
             ? rows.map((row) => (
                 <TableRow
                   key={row.id}

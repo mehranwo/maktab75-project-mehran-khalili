@@ -32,7 +32,7 @@ export default function SingleProductDesktop({ product, matches }) {
 
   const sendDataTORedux = ()=>{
     dispatch(selectedProduct(product))
-    navigate(`shop/${product.id}` , {replace:true})
+    navigate(`shop/${product.id}`)
   }
 
   const handleMouseEnter = () => {

@@ -53,6 +53,7 @@ server.get('/files', (req, res, next) => {
   })
 })
 
+
 // download (preview) a file API
 server.get('/files/:file_id', (req, res, next) => {
   const { file_id } = req.params
@@ -116,7 +117,6 @@ server.post([
   '/auth/refresh-token',
 ], function (req, res, next) {
   if (req.url === '/auth/login') {
-    console.log({ body: req });
     const { username, password } = req.body
     req.user = (DB.users || {}).find(u => u.username == username && u.password == password)
     if (!req.user) return res.status(400).send('No user with those credentials!')
@@ -125,7 +125,7 @@ server.post([
     if (!req.user) return res.status(400).send('Token Required!')
   }
   const { username, role, name } = req.user
-  jwt.sign({ username, role, name }, AUTH_JWT_SECRET, AUTH_JWT_OPTIONS, (err, token) => {
+  jwt.sign({ username, role, name },AUTH_JWT_SECRET, AUTH_JWT_OPTIONS, (err, token) => {
     if (err) return next(err)
     res.json({ token })
   })

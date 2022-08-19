@@ -22,6 +22,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 
 function SlideTransition(props) {
   return <Slide direction="down" {...props} />;
@@ -29,7 +30,6 @@ function SlideTransition(props) {
 
 const ProductDetailWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
-  padding: theme.spacing(4),
 }));
 
 const ProductDetailInfoWrapper = styled(Box)(() => ({
@@ -39,85 +39,64 @@ const ProductDetailInfoWrapper = styled(Box)(() => ({
   lineHeight: 1.5,
 }));
 
-export default function ProductDetail({ open, onClose, product }) {
+export default function ProductDetail({onClose}) {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product);
   return (
-    <Dialog
-      TransitionComponent={SlideTransition}
-      variant="permanant"
-      open={open}
-      fullScreen
-    >
-      <DialogTitle
-        sx={{
-          background: Colors.primary,
-        }}
+    <>
+      <Box display="flex" alignItems="center" justifyContent={"space-between"}>
+       {product.productName}
+      </Box>
+      <ProductDetailWrapper
+        display={"flex"}
+        flexDirection={matches ? "column" : "row"}
       >
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent={"space-between"}
-        >
-          Product title
-          <IconButton onClick={onClose}>
-            <CloseIcon />
-          </IconButton>
-        </Box>
-      </DialogTitle>
-      <DialogContent>
-        <ProductDetailWrapper
-          display={"flex"}
-          flexDirection={matches ? "column" : "row"}
-        >
-          <Product sx={{ mr: 4 }}>
-            <ProductImage>
-              <img
-                src={`http://localhost:3003/files/${product.src[0]}`}
-                width={"100%"}
-                height={"100%"}
-              />
-            </ProductImage>
-          </Product>
-          <ProductDetailInfoWrapper>
-            <Typography variant="subtitle">SKU: 123</Typography>
-            <Typography variant="subtitle">Availability: 5 in stock</Typography>
-            <Typography sx={{ lineHeight: 2 }} variant="h4">
-              {product.productName}
-            </Typography>
-            <Typography variant="body">
-              {product.description}
-            </Typography>
-            <Box
-              sx={{ mt: 4 }}
-              display="flex"
-              alignItems="center"
-              justifyContent="space-between"
-            >
-              <IncDec />
-              <Button variant="contained">Add to Cart</Button>
-            </Box>
-            <Box
-              display="flex"
-              alignItems="center"
-              sx={{ mt: 4, color: Colors.light }}
-            >
-              <FavoriteIcon sx={{ mr: 2 }} />
-              Add to wishlist
-            </Box>
-            <Box
-              sx={{
-                mt: 4,
-                color: Colors.dove_gray,
-              }}
-            >
-              <FacebookIcon />
-              <TwitterIcon sx={{ pl: 2 }} />
-              <InstagramIcon sx={{ pl: 2 }} />
-            </Box>
-          </ProductDetailInfoWrapper>
-        </ProductDetailWrapper>
-      </DialogContent>
-    </Dialog>
+        <Product sx={{ mr: 4 }}>
+          <ProductImage>
+            <img
+              src={`http://localhost:3003/files/${product.src[0]}`}
+              width={"100%"}
+              height={"100%"}
+            />
+          </ProductImage>
+        </Product>
+        <ProductDetailInfoWrapper>
+          <Typography variant="subtitle">Availability: 5 in stock</Typography>
+          <Typography sx={{ lineHeight: 2 }} variant="h4">
+            {product.productName}
+          </Typography>
+          <Typography variant="body">{product.description}</Typography>
+          <Box
+            sx={{ mt: 4 }}
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <IncDec />
+            <Button variant="contained">Add to Cart</Button>
+          </Box>
+          <Box
+            display="flex"
+            alignItems="center"
+            sx={{ mt: 4, color: Colors.light }}
+          >
+            <FavoriteIcon sx={{ mr: 2 }} />
+            Add to wishlist
+          </Box>
+          <Box
+            sx={{
+              mt: 4,
+              color: Colors.dove_gray,
+            }}
+          >
+            <FacebookIcon />
+            <TwitterIcon sx={{ pl: 2 }} />
+            <InstagramIcon sx={{ pl: 2 }} />
+          </Box>
+        </ProductDetailInfoWrapper>
+      </ProductDetailWrapper>
+    </>
   );
 }

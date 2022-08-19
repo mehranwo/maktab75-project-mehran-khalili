@@ -8,8 +8,9 @@ import { ThemeProvider } from "@mui/system";
 import { Box, Button, Container } from "@mui/material";
 import theme from "../../styles/theme";
 import SideBar from "../../components/sidebarAdmin";
-import BasicTable from "../../components/table/table";
+import HandleTable from "../../components/table";
 import Grid from "@mui/material/Grid";
+import {useSelector , useDispatch} from "react-redux"
 
 export const ManagmentProducts = () => {
   const [page, setPage] = useState(1);
@@ -18,40 +19,30 @@ export const ManagmentProducts = () => {
   const [field , setField] = useState("products")
   const [url, setUrl]= useState("products")
   const [filter , setFilter] = useState("")
-
-  const productsHeader ={ "src": "تصویر","productName":'نام' , "brand":"برند","delete" :"حذف", "edit":"ویرایش" }
-  
-  const stockHeader = {"productName":'نام',"stock":"موجودی","price":"قیمت"}
-
-  const ordersHeader = {"name" : "نام کاربر" , "sum":"مجموع" , "time":"زمان" , "checkOrder":"بررسی" }
-
-  const changeField = async (str)=>{
+ 
+  const changeField = async (str) => {
     setField(str)
-    getAllData(str)
+    getAllData('products')
   }
 
   const changeUrl = (str)=>{
     setUrl(str)
   }
 
-
   const getAllData = (str) => {
     getPaginatedData(page, rowsPerPage,str).then((res) => {
-      console.log(res);
       setData(res);
     });
   };
 
   const getAllfilterData =(str)=>{
     getFilteredData('orders',str).then((res) => {
-      console.log(res);
       setData(res);
   })
 }
 
   const changePage = (num)=>{
     setPage(num)
-    
   }
 
   const changeFilter=(str)=>{
@@ -62,8 +53,9 @@ export const ManagmentProducts = () => {
   }
 
   useEffect(() => {
-    getAllData(field);
-  }, [page , field]);
+    getAllData('products');
+  }, [page]);
+
 
 
   return (
@@ -78,7 +70,7 @@ export const ManagmentProducts = () => {
           <Box>
             <Grid container spacing={2}>
               <Grid item xs={2}>
-                <SideBar changeField={changeField} changeUrl={changeUrl}  />
+                <SideBar changeField={changeField}  changeUrl={changeUrl}  />
               </Grid>
               <Grid item xs={1}></Grid>
               <Grid item xs={8}>
@@ -95,7 +87,7 @@ export const ManagmentProducts = () => {
                   </>
                   ) 
                 }
-                <BasicTable rows={data.products}  columns={field === "products" ?( productsHeader) : (field === "stock" ? stockHeader : ordersHeader ) } />
+                <HandleTable rows={data.products} getAllData={getAllData}  type={field === "products" ?( "Product") : (field === "stock" ? "Stock" : "Order" ) } />
                 <Box sx={{marginTop:'10px', display:'flex',gap:1}}>
                   <Button onClick={(e)=>{
                     changePage(e.target.textContent)

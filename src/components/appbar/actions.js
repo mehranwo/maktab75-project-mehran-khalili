@@ -35,7 +35,7 @@ export default function Actions({matches}) {
         </ListItemButton>
         <Divider orientation="vertical" flexItem />
         <ListItemButton
-         to={"/login"}
+         to={localStorage.getItem("TOKEN") ? '/admin/products' : "/login"}
           sx={{
             justifyContent: "center",
           }}

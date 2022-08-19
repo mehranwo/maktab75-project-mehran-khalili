@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import HandleRouter from "../../Routes/HandleRouter";
 import Banner from "../../components/banner";
 import Promotions from "../../components/promotions";
-import { ManagmentProducts } from "../../pages/managment";
+import { ManagmentProducts } from "../managment";
 import RTL from "../../rtl";
 import Products from "../../components/products";
 import Footer from "../../components/footer";

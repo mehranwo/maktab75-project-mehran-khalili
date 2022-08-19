@@ -12,6 +12,10 @@ import Contact from '../pages/Contact/Contact'
 import BuyPage from '../pages/BuyPage/BuyPage'
 import Favorite from '../pages/Favorite/Favorite'
 import  ProductShow  from '../pages/product/Product'
+import ProductsPage from '../pages/managment/productsPage'
+import StockPage from '../pages/managment/stockPage'
+import { OrdersPage } from 'pages/managment/OrdersPage'
+import ProductDetail from 'components/productdetail'
 
 export default function HandleRouter() {
   return (
@@ -19,11 +23,13 @@ export default function HandleRouter() {
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>} />
         <Route path='/admin' element={<ManagmentProducts/>}/>
-        <Route path= '/products' element={<></>}/>
+        <Route path='/admin/products' element={<ProductsPage/>}/>
+        <Route path='/admin/stock' element={<StockPage/>}/>
+        <Route path='/admin/orders' element={<OrdersPage/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/buyPage' element={<BuyPage/>} />
         <Route path='/Favorite' element={<Favorite/>} />
-        <Route path='/shop/:id' element={<ProductShow/>}/>
+        <Route path='/shop/:id' element={<ProductDetail/>}/>
         {/* 
         <Route path='/finalBuy' element={<FinalBuy/>} />
         <Route path='/resultBuy' element={<ResultBuy/>} />

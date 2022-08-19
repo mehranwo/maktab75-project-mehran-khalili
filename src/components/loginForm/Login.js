@@ -49,10 +49,9 @@ const Login = () => {
   const authentication = async (obj) => {
     const response = await axios.post("http://localhost:3003/auth/login", obj)
       .then((res)=>{
-        console.log(res.data);
         localStorage.setItem("TOKEN", res.data.token);
         setTimeout(()=>{
-          navigate("/admin");
+          navigate("/admin/products");
         },1000)
         notifyTrue()
       })

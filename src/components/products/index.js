@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setProducts,
 } from "../../redux/actions/productsActions";
+
+
 export default function Products() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));

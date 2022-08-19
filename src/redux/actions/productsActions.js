@@ -14,10 +14,29 @@ export const selectedProduct = (product) =>{
         payload : product,
     }
 }
+export const editedProduct = (product) =>{
+    return {
+        type:ActionTypes.EDITED_PRODUCT,
+        payload : product,
+    }
+}
+export const addProduct = (product) =>{
+    return {
+        type:ActionTypes.ADD_PRODUCT,
+        payload : product,
+    }
+}
 
 
 export const removeSelectedProduct = (product)=>{
     return {
         type: ActionTypes.REMOVE_SELECTED_PRODUCT,
+    }
+}
+
+export const selectedDeletedProduct = (product)=>{
+    return{
+        type:ActionTypes.SELECTED_DELETED_PRODUCT,
+        payload:product
     }
 }

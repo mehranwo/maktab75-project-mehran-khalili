@@ -10,6 +10,7 @@ import Promotions from "../../components/promotions";
 import { ManagmentProducts } from "../../pages/managment";
 import RTL from "../../rtl";
 import Products from "../../components/products";
+import Footer from "../../components/footer";
 
 const Home = () => {
   return (
@@ -24,8 +25,9 @@ const Home = () => {
           <Appbar />
           <Banner />
           <Promotions />
-          <Products/>
+          <Products />
         </Container>
+        <Footer />
       </RTL>
     </ThemeProvider>
   );

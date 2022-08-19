@@ -16,6 +16,8 @@ import { AppbarHeader } from "../../styles/appbar";
 import image1 from "../../asset/the-hanger.jpg";
 import { useState } from "react";
 import {styled} from '@mui/material/styles'
+import ListItemLink from "components/ListItemLink";
+import { Link } from "react-router-dom";
 
 
 const sideBarStyle = {
@@ -36,46 +38,42 @@ const itemStyle = {
 }
 
 
-export default function SideBar({changeField , changeUrl}) {
+export default function SideBar() {
 
   return (
     <Box style={sideBarStyle}>
       <Box sx={{display:"flex" , alignItems:"center"}}>
+      <Link to="/">
         <ImageListItem sx={{width:"50px"}}>
           <img src={image1} />
         </ImageListItem>
+      </Link>
         <AppbarHeader>کمد</AppbarHeader>
       </Box>
       <Box>
         <List sx={{ display: "flex", flexDirection: "column", gap: 2, }}>
           <ListItem style={itemStyle} disablePadding>
-            <ListItemButton onClick={()=>{
-              changeField("products")
-              }} sx={{ borderRadius: "20px" }}>
+            <ListItemButton sx={{ borderRadius: "20px" }}>
               <ListItemIcon>
                 <WidgetsRoundedIcon sx={{ color: Colors.primary }} />
               </ListItemIcon>
-              <ListItemText primary={"محصولات"} />
+              <ListItemLink to={'/admin/products'} primary={"محصولات"} />
             </ListItemButton>
           </ListItem>
           <ListItem style={itemStyle} disablePadding>
-            <ListItemButton onClick={()=>{
-              changeField("stock")
-              }} sx={{ borderRadius: "20px" }}>
+            <ListItemButton sx={{ borderRadius: "20px" }}>
               <ListItemIcon>
                 <StorefrontRoundedIcon sx={{ color: Colors.primary }} />
               </ListItemIcon>
-              <ListItemText primary={"موجودی و قیمت ها"} />
+              <ListItemLink to={'/admin/stock'} primary={"موجودی و قیمت ها"} />
             </ListItemButton>
           </ListItem>
           <ListItem style={itemStyle} disablePadding>
-            <ListItemButton onClick={()=>{
-              changeField("orders") 
-              }} sx={{ borderRadius: "20px" }}>
+            <ListItemButton  sx={{ borderRadius: "20px" }}>
               <ListItemIcon>
                 <StyleRoundedIcon sx={{ color: Colors.primary }} />
               </ListItemIcon>
-              <ListItemText primary={"سفارش ها"} />
+              <ListItemLink to={'/admin/orders'} primary={"سفارش ها"} />
             </ListItemButton>
           </ListItem>
         </List>
@@ -90,11 +88,11 @@ export default function SideBar({changeField , changeUrl}) {
             }}
             disablePadding
           >
-            <ListItemButton sx={{ borderRadius: "20px" }}>
+            <ListItemButton onClick={()=>localStorage.clear()} sx={{ borderRadius: "20px" }}>
               <ListItemIcon>
                 <PowerSettingsNewIcon sx={{ color: "#e53935" }} />
               </ListItemIcon>
-              <ListItemText primary={"خروج"} />
+              <ListItemLink to={'/'} primary={"خروج"} />
             </ListItemButton>
           </ListItem>
         </List>

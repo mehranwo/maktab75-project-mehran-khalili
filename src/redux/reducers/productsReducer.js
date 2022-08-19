@@ -23,3 +23,27 @@ export const selectedProductsReducer = (state = {} , {type , payload})=>{
             return state
     }
 }
+export const selectedDeletedProduct = (state = {} , {type , payload})=>{
+  switch(type){
+    case ActionTypes.SELECTED_DELETED_PRODUCT:
+      return {...state , ...payload}
+    default:
+      return state
+  }
+}
+export const editedProductReducer = (state = {} , {type , payload})=>{
+  switch(type){
+    case ActionTypes.EDITED_PRODUCT:
+      return {...state , ...payload}
+    default:
+      return state
+  }
+}
+export const addProductReducer = (state = {} , {type , payload})=>{
+  switch(type){
+    case ActionTypes.ADD_PRODUCT:
+      return {...state , ...payload}
+    default:
+      return state
+  }
+}

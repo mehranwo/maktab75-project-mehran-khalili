@@ -9,7 +9,7 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Colors } from "../../styles/theme";
 import styled from "@emotion/styled";
@@ -23,80 +23,96 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getData, getFilteredData } from "api/api";
+import Layout from "layout/layout";
+//swiper
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import Swiper, { FreeMode, Navigation, Thumbs } from "swiper";
+import { SwiperSlide } from "swiper/react";
+import SwiperProductImage from "components/swiperImage";
+import Light from "components/test/test";
 
 function SlideTransition(props) {
   return <Slide direction="down" {...props} />;
 }
 
-const ProductDetailWrapper = styled(Box)(({ theme }) => ({
-  display: "flex",
-}));
 
 const ProductDetailInfoWrapper = styled(Box)(() => ({
   display: "flex",
   flexDirection: "column",
-  maxWidth: 500,
+  justifyContent:"center",
+  // maxWidth: 500,
   lineHeight: 1.5,
 }));
 
-export default function ProductDetail({onClose}) {
+export default function ProductDetail({ onClose }) {
+  const { id } = useParams();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
-  const dispatch = useDispatch();
-  const product = useSelector((state) => state.product);
+  const [product, setProduct] = useState();
+  //swiper
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
+  useEffect(() => {
+    getData(`products/${id}`).then((res) => setProduct(res));
+  }, [id]);
+
   return (
-    <>
-      <Box display="flex" alignItems="center" justifyContent={"space-between"}>
-       {product.productName}
-      </Box>
-      <ProductDetailWrapper
-        display={"flex"}
-        flexDirection={matches ? "column" : "row"}
-      >
-        <Product sx={{ mr: 4 }}>
-          <ProductImage>
-            <img
-              src={`http://localhost:3003/files/${product.src[0]}`}
-              width={"100%"}
-              height={"100%"}
-            />
-          </ProductImage>
-        </Product>
-        <ProductDetailInfoWrapper>
-          <Typography variant="subtitle">Availability: 5 in stock</Typography>
-          <Typography sx={{ lineHeight: 2 }} variant="h4">
-            {product.productName}
-          </Typography>
-          <Typography variant="body">{product.description}</Typography>
+    <Layout>
+      {product && (
+        <>
           <Box
-            sx={{ mt: 4 }}
-            display="flex"
-            alignItems="center"
-            justifyContent="space-between"
+            display={"flex"}
+            flexDirection={matches ? "column" : "row"}
+            flex='1'
+            justifyContent={'space-between'}
           >
-            <IncDec />
-            <Button variant="contained">Add to Cart</Button>
+            <ProductDetailInfoWrapper flex='1'>
+              <Typography variant="subtitle">
+                Availability: 5 in stock
+              </Typography>
+              <Typography sx={{ lineHeight: 2 }} variant="h4">
+                {product.productName}
+              </Typography>
+              <Typography variant="body">{product.description}</Typography>
+              <Box
+                sx={{ mt: 4 }}
+                display="flex"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <IncDec />
+                <Button variant="contained">Add to Cart</Button>
+              </Box>
+              <Box
+                display="flex"
+                alignItems="center"
+                sx={{ mt: 4, color: Colors.light }}
+              >
+                <FavoriteIcon sx={{ mr: 2 }} />
+                Add to wishlist
+              </Box>
+              <Box
+                sx={{
+                  mt: 4,
+                  color: Colors.dove_gray,
+                }}
+              >
+                <FacebookIcon />
+                <TwitterIcon sx={{ pl: 2 }} />
+                <InstagramIcon sx={{ pl: 2 }} />
+              </Box>
+            </ProductDetailInfoWrapper>
+            <Product sx={{ mr: 4 }} flex='1'>
+              <SwiperProductImage src={product.src}/>
+            </Product>
           </Box>
-          <Box
-            display="flex"
-            alignItems="center"
-            sx={{ mt: 4, color: Colors.light }}
-          >
-            <FavoriteIcon sx={{ mr: 2 }} />
-            Add to wishlist
-          </Box>
-          <Box
-            sx={{
-              mt: 4,
-              color: Colors.dove_gray,
-            }}
-          >
-            <FacebookIcon />
-            <TwitterIcon sx={{ pl: 2 }} />
-            <InstagramIcon sx={{ pl: 2 }} />
-          </Box>
-        </ProductDetailInfoWrapper>
-      </ProductDetailWrapper>
-    </>
+        </>
+      )}
+    </Layout>
   );
 }

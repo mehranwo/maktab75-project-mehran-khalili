@@ -16,6 +16,10 @@ import ProductsPage from '../pages/managment/productsPage'
 import StockPage from '../pages/managment/stockPage'
 import { OrdersPage } from 'pages/managment/OrdersPage'
 import ProductDetail from 'components/productdetail'
+import Categories from 'pages/Categories/Catogories'
+import Products from 'pages/products/Products'
+import MenProducts from 'pages/products/MenProducts'
+import WomenProducts from 'pages/products/womenProducts'
 
 export default function HandleRouter() {
   return (
@@ -30,6 +34,10 @@ export default function HandleRouter() {
         <Route path='/buyPage' element={<BuyPage/>} />
         <Route path='/Favorite' element={<Favorite/>} />
         <Route path='/shop/:id' element={<ProductDetail/>}/>
+        <Route path='/categories' element={<Categories/>}/>
+        <Route path='/categories/menProduct' element={<MenProducts/>}/>
+        <Route path='/categories/womenProduct' element={<WomenProducts/>}/>
+        <Route path='/products' element={<Products/>}/>
         {/* 
         <Route path='/finalBuy' element={<FinalBuy/>} />
         <Route path='/resultBuy' element={<ResultBuy/>} />

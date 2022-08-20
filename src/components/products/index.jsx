@@ -27,9 +27,9 @@ export default function Products() {
         item
         key={product.id}
         display="flex"
-        xs={2}
-        sm={4}
-        md={4}
+        // xs={2}
+        // sm={4}
+        // md={4}
         flexDirection={"column"}
         alignItems="center"
       >

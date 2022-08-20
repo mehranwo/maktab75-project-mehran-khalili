@@ -11,6 +11,8 @@ import { ManagmentProducts } from "../managment";
 import RTL from "../../rtl";
 import Products from "../../components/products";
 import Footer from "../../components/footer";
+import CategoryHome from "components/Category/CategoryHome";
+
 
 const Home = () => {
   return (
@@ -20,12 +22,14 @@ const Home = () => {
           maxWidth="xl"
           sx={{
             background: "#fff",
+            overflow:"hidden"
           }}
         >
           <Appbar />
           <Banner />
           <Promotions />
-          <Products />
+          {/* <Products /> */}
+          <CategoryHome/>
         </Container>
         <Footer />
       </RTL>

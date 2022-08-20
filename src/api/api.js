@@ -17,8 +17,7 @@ export const getData =async (field)=>{
 
 export const getFilteredData =async ( field , filter)=>{
     const res = await HttpService.get(`${field}?${filter}`)
-    const result = { products:res.data, count:res.headers["x-total-count"] }
-    return result ;     
+    return res.data ;     
 }
 
 export const deleteData = async (field , id)=>{

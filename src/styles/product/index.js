@@ -8,7 +8,8 @@ export const Product = styled(Box)(({theme})=>({
    display:"flex",
    justifyContent: "center",
    alignItems:"center",
-   flexDirection:"column",
+   padding:0,
+//    flexDirection:"column",
     [theme.breakpoints.up('md')]:{
         position:"relative"
     }
@@ -16,7 +17,7 @@ export const Product = styled(Box)(({theme})=>({
 
 
 export const ProductImage = styled(Box)(({theme})=>({
-    width:"100%",
+    width:"250px",
     background: Colors.primary,
     padding:'2px',
     [theme.breakpoints.down('md')]:{
@@ -48,8 +49,8 @@ export const ProductAddToCart = styled(Button)(({show , theme})=>({
     [theme.breakpoints.up('md')]:{
         position :"absolute",
         bottom: "2%",
-        width:"300px",
-        padding:"10px 5px",
+        width:"180px",
+        padding:"7px 5px",
         animation:
             show &&
             `${slideInBottom} 0.5s cubic-bezier(0.250,0.468 , 0.450, 0.940) both`

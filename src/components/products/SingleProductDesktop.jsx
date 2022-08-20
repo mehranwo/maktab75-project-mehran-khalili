@@ -32,7 +32,6 @@ export default function SingleProductDesktop({ product, matches }) {
 
   const sendDataTORedux = ()=>{
     dispatch(selectedProduct(product))
-    navigate(`shop/${product.id}`)
   }
 
   const handleMouseEnter = () => {
@@ -43,7 +42,7 @@ export default function SingleProductDesktop({ product, matches }) {
   };
   return (
     <>
-      <Product onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+      <Product onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={()=>navigate(`../shop/${product.id}`)} >
         <ProductImage sx={{"&:hover img" : {content:`url(http://localhost:3003/files/${product.src[1]})`} }}>
             <img src={`http://localhost:3003/files/${product.src[0]}`} width={'100%'} height={'100%'}/>
         </ProductImage>

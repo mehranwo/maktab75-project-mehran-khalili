@@ -17,7 +17,7 @@ export default function AppbarDesktop({ matches }) {
       <AppbarHeader>کمد</AppbarHeader>
       <MyList type="row">
         <ListItemLink to="/" primary="صفحه اصلی" />
-        <ListItemLink to="/categoreis" primary="دسته بندی ها" />
+        <ListItemLink to="/categories" primary="دسته بندی ها" />
         <ListItemLink to="/products" primary="محصولات" />
         <ListItemLink to="/contact" primary="ارتباط با ما" />
         <ListItemButton

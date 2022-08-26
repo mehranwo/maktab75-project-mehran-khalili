@@ -19,16 +19,15 @@ export default function Category({ type, products }) {
       </Typography>
       <Box>
         <Swiper
-          slidesPerView={5}
+          slidesPerView={4}
           spaceBetween={30}
-          slidesPerGroup={4}
+          slidesPerGroup={3}
           autoplay={{
             delay: 4000,
             disableOnInteraction: false,
           }}
 
           modules={[Pagination , Autoplay , Navigation  ]}
-          className="mySwiper"
         >
           {products.length > 0 &&
             products.map((product) => (

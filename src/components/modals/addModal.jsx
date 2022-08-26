@@ -24,8 +24,13 @@ import { useDispatch, useSelector } from "react-redux";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { addProduct } from "../../redux/actions/productsActions";
 import { postData } from "api/api";
+import Swal from "sweetalert2";
+
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+
+
+
   "& .MuiDialogContent-root": {
     padding: theme.spacing(2),
   },
@@ -56,9 +61,26 @@ export default function AddModal({
   };
 
   const savaChange = async () => {
-    await postData("products", product);
-    getAllData("products");
-  };
+    if(
+      product?.productName?.length > 0 &&
+      product?.gender?.length>0 &&
+      product?.subcategory?.length > 0 &&
+      product?.brand?.length > 0 &&
+      product?.price?.length > 0 &&
+      product?.stock?.length > 0 &&
+      product?.src?.length > 0 
+      ){
+        await postData("products", product);
+        getAllData("products");
+        Swal.fire('ذخیره شد!', '', 'success')
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'اضافه کردن انجام نشد',
+          text: 'همه فیلد ها باید پر شود',
+        })
+      }
+    };
 
   const onFileUpload = () => {
     const formData = new FormData();
@@ -112,7 +134,7 @@ export default function AddModal({
         dividers
         sx={{ m: 0, p: 2, width: "600px", height: "600px" }}
       >
-        <FormControl>
+        <form>
           <Box>
             <TextField
               id="file"
@@ -125,7 +147,8 @@ export default function AddModal({
                 shrink: true,
               }}
               variant="standard"
-            ></TextField>
+              required
+            />
             <Button
               onClick={(e) => {
                 e.preventDefault();
@@ -231,12 +254,6 @@ export default function AddModal({
           </Box>
           <Box sx={{ display: "flex" }}>
             <TextField
-              variant="outlined"
-              value={Number(count) +1}
-              sx={{ m: 1, minWidth: 120, flex: "1" }}
-              disabled
-            />
-            <TextField
               label="نام محصول"
               variant="outlined"
               value={product.productName}
@@ -294,11 +311,12 @@ export default function AddModal({
               value={product.description}
             />
           </Box>
-        </FormControl>
+        </form>
       </DialogContent>
       <DialogActions>
         <Button
           autoFocus
+          type="submit"
           onClick={() => {
             savaChange();
             handleClose();

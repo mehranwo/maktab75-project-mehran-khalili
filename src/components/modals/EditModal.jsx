@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import { editedProduct } from "../../redux/actions/productsActions";
 import { postData, updateData } from "api/api";
+import Swal from "sweetalert2";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -61,8 +62,25 @@ export default function OrderModal({
   };
 
   const savaChange = async ()=>{
+    if(
+      product?.productName?.length > 0 &&
+      product?.gender?.length>0 &&
+      product?.subcategory?.length > 0 &&
+      product?.brand?.length > 0 &&
+      product?.price?.length > 0 &&
+      product?.stock?.length > 0 &&
+      product?.src?.length > 0 
+      ){
     await updateData('products' , product.id , product)
     await getAllData('products')
+    Swal.fire('ذخیره شد!', '', 'success')
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'اضافه کردن انجام نشد',
+      text: 'همه فیلد ها باید پر شود',
+    })
+  }
   }
 
   const onFileUpload = () => {

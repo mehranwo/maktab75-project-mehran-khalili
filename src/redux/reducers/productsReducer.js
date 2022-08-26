@@ -47,3 +47,11 @@ export const addProductReducer = (state = {} , {type , payload})=>{
       return state
   }
 }
+export const buyProductReducer = (state = [] , {type , payload})=>{
+  switch(type){
+    case ActionTypes.BUY_PRODUCT:
+      return [ ...payload]
+    default:
+      return state
+  }
+}

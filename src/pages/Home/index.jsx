@@ -7,33 +7,20 @@ import { BrowserRouter } from "react-router-dom";
 import HandleRouter from "../../Routes/HandleRouter";
 import Banner from "../../components/banner";
 import Promotions from "../../components/promotions";
-import { ManagmentProducts } from "../managment";
+
 import RTL from "../../rtl";
 import Products from "../../components/products";
 import Footer from "../../components/footer";
 import CategoryHome from "components/Category/CategoryHome";
-
+import Layout from "layout/layout";
 
 const Home = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <RTL>
-        <Container
-          maxWidth="xl"
-          sx={{
-            background: "#fff",
-            overflow:"hidden"
-          }}
-        >
-          <Appbar />
-          <Banner />
-          <Promotions />
-          {/* <Products /> */}
-          <CategoryHome/>
-        </Container>
-        <Footer />
-      </RTL>
-    </ThemeProvider>
+    <Layout>
+      <Banner />
+      <Promotions />
+      <CategoryHome />
+    </Layout>
   );
 };
 

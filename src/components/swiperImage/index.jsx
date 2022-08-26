@@ -65,16 +65,6 @@ export default function SwiperProductImage({ src }) {
         mb={2}
       >
         {src.map((item, index) => (
-          //   <Box
-          //   className={`keen-slider__slide number-slide${index}`}
-          // //   style={{ width: "100px", height: "100px" }}
-          // >
-          //   <img
-          //     src={`http://localhost:3003/files/${item}`}
-          //     width={"100%"}
-          //     height={"100%"}
-          //   />
-          // </Box>
           <InnerImageZoom
             src={`http://localhost:3003/files/${item}`}
             zoomType="hover"

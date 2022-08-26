@@ -8,6 +8,7 @@ import {
   Typography,
   Link,
   Box,
+  FormControl,
 } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,41 +25,57 @@ const Login = () => {
     username: "",
     password: "",
   });
+
   const navigate = useNavigate();
 
   // toastify
-  const notifyFasle = () => toast.error("نام کاربری یا رمز عبور اشتباه است" , {
-    position: "bottom-left",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
+  const notifyFasle = () =>
+    toast.error("نام کاربری یا رمز عبور اشتباه است", {
+      position: "bottom-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
-  const notifyTrue = () => toast.success("خوش آمدید" , {
-    position: "bottom-left",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
+  const notifyTrue = () =>
+    toast.success("خوش آمدید", {
+      position: "bottom-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
 
   const authentication = async (obj) => {
-    const response = await axios.post("http://localhost:3003/auth/login", obj)
-      .then((res)=>{
-        localStorage.setItem("TOKEN", res.data.token);
-        setTimeout(()=>{
-          navigate("/admin/products");
-        },1000)
-        notifyTrue()
-      })
-      .catch((err)=>{
-        localStorage.clear();
-        notifyFasle()
-      })
+    if (user.password.length > 5) {
+      await axios
+        .post("http://localhost:3003/auth/login", obj)
+        .then((res) => {
+          localStorage.setItem("TOKEN", res.data.token);
+          setTimeout(() => {
+            navigate("/admin/products");
+          }, 1000);
+          notifyTrue();
+        })
+        .catch((err) => {
+          localStorage.clear();
+          notifyFasle();
+        });
+    } else {
+      toast.error("رمز عبور باید بیشتر از 6 رقم داشته باشد", {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   const paperStyle = {
@@ -69,12 +86,14 @@ const Login = () => {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
+    backgroundColor: "#ffffffd9",
+    borderRadius: "20px",
   };
   const avatarStyle = { backgroundColor: Colors.primary };
   const btnstyle = { margin: "8px 0" };
   return (
     <Grid>
-      <Paper elevation={10} style={paperStyle}>
+      <Paper elevation={1} style={paperStyle}>
         <Grid align="center" gap={3}>
           <Avatar style={avatarStyle}>
             <LockOutlinedIcon />
@@ -88,33 +107,43 @@ const Login = () => {
           justifyContent={"space-between"}
           alignItems={"flex-start"}
         >
-          <TextField
-            label="نام کاربری"
-            value={user.username}
-            onChange={(e) => setUser({ ...user, username: e.target.value })}
-            fullWidth
-            required
-          />
-          <TextField
-            label="رمز عبور"
-            type="password"
-            value={user.password}
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-            fullWidth
-            required
-          />
-          <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-            style={btnstyle}
-            fullWidth
-            onClick={() => {
+          <form
+            sx={{ width: "100%" }}
+            onSubmit={(e) => {
+              e.preventDefault();
               authentication(user);
             }}
           >
-            ورود
-          </Button>
+            <TextField
+              label="نام کاربری"
+              value={user.username}
+              onChange={(e) => setUser({ ...user, username: e.target.value })}
+              fullWidth
+              required
+            />
+            <TextField
+              label="رمز عبور"
+              type="password"
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
+              error={user.password.length > 5 ? false : true}
+              helperText={
+                user.password.length < 6 && "رمزعبور باید بیش از 6 رقم باشد"
+              }
+              fullWidth
+              required
+              sx={{ margin: "1rem 0" }}
+            />
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              style={btnstyle}
+              fullWidth
+            >
+              ورود
+            </Button>
+          </form>
           <FormControlLabel
             dir="ltr"
             label="مرا به خاطرت نگهدار"
@@ -123,17 +152,29 @@ const Login = () => {
         </Grid>
         <Box display={"flex"} flexDirection={"column"} gap={1}>
           <Typography>
-            <Link href="#" sx={{ textDecoration: "none" }}>
+            <Link href="#" sx={{ textDecoration: "none", color: "#4b00ff" }}>
               فراموشی رمز عبور
             </Link>
           </Typography>
-          <Typography>
-            {" "}
-            اکانت داری؟
-            <Link href="#" sx={{ textDecoration: "none" }}>
-              ثبت نام
-            </Link>
-          </Typography>
+          <Box display={"flex"} justifyContent={"space-between"}>
+            <Typography>
+              اکانت داری؟
+              <Link
+                href="#"
+                sx={{
+                  textDecoration: "none",
+                  marginLeft: "5px",
+                  color: "#4b00ff",
+                }}
+              >
+                ثبت نام
+              </Link>
+            </Typography>
+            <Typography onClick={()=>navigate('/')} sx={{color: "#4b00ff",cursor:"pointer"}}>
+              صفحه اصلی
+            </Typography>
+          </Box>
+
           <ToastContainer
             position="top-right"
             autoClose={5000}

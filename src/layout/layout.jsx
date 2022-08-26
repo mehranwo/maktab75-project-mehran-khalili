@@ -12,7 +12,8 @@ export default function Layout({ children }) {
         <Container
           maxWidth="xl"
           sx={{
-            background: "#fff",
+            background: "#fdff8969",
+            overflow:"hidden"
           }}
         >
           <Appbar />

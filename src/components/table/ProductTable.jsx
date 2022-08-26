@@ -33,6 +33,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { deleteData } from "../../api/api";
 import EditModal from "components/modals/EditModal";
 import AddModal from "components/modals/addModal";
+import Swal from "sweetalert2";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -129,7 +130,7 @@ export default function ProductTable({ rows, getAllData ,count}) {
                     sx={{ width: "120px", height: "150px" }}
                   >
                     <img
-                      src={`http://localhost:3003/files/${row.src[0]}`}
+                      src={`http://localhost:3003/files/${row.src && row?.src[0]}`}
                       width={"100%"}
                       height={"100%"}
                     />
@@ -141,7 +142,27 @@ export default function ProductTable({ rows, getAllData ,count}) {
                       color="error"
                       startIcon={<DeleteRoundedIcon />}
                       variant="outlined"
-                      onClick={(e) => HandleDelete(row)}
+                      onClick={(e) =>{
+                        Swal.fire({
+                          title: 'آیا مطمئن هستید؟',
+                          icon: 'warning',
+                          showCancelButton: true,
+                          confirmButtonColor: '#3085d6',
+                          cancelButtonColor: '#d33',
+                          cancelButtonText:"بازگشت",
+                          confirmButtonText: 'حذف شود'
+                        
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            HandleDelete(row)
+                            Swal.fire(
+                              'حذف شد !',
+                              'محصول شما با موفقیت حذف شد ',
+                              'success'
+                            )
+                          }
+                        })
+                        }}
                     >
                       حذف
                     </Button>

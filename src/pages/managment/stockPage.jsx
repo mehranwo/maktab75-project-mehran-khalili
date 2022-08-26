@@ -18,10 +18,16 @@ export default function StockPage() {
     getPaginatedData(page, rowsPerPage,str).then((res) => {
       setData(res);
     });
+    
   };
   useEffect(() => {
     getAllData('products');
   }, [page]);
+
+
+  useEffect(() => {
+    getAllData('products');
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

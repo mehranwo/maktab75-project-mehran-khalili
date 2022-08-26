@@ -12,12 +12,16 @@ import DoneRoundedIcon from "@mui/icons-material/DoneRounded";
 import axios from "axios";
 import { updateData } from "../../api/api";
 import { Colors } from "styles/theme";
+function useForceUpdate(){
+  const [value, setValue] = useState(0);
+  return () => setValue(value => value + 1);
+}
 
 export default function StockTable({ rows, getAllData }) {
   const [codeChangedPrice, setCodeChangedPrice] = useState([]);
   const [codeChangedStock, setCodeChangedStock] = useState([]);
 
-  const saveEditedData = () => {
+  const saveEditedData = async () => {
     const hash = new Map();
     codeChangedPrice.concat(codeChangedStock).forEach(function (obj) {
       hash.set(obj.id, Object.assign(hash.get(obj.id) || {}, obj));
@@ -28,7 +32,7 @@ export default function StockTable({ rows, getAllData }) {
     codes.map(async (item)=>{
       await updateData('products' , item.id , item)
     })
-    getAllData('products')
+    await getAllData('products')
   };
   return (
     <>

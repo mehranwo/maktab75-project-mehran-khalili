@@ -18,7 +18,7 @@ export default function AppbarDesktop({ matches }) {
       <MyList type="row">
         <ListItemLink to="/" primary="صفحه اصلی" />
         <ListItemLink to="/categories" primary="دسته بندی ها" />
-        <ListItemLink to="/products" primary="محصولات" />
+        {/* <ListItemLink to="/products" primary="محصولات" /> */}
         <ListItemLink to="/contact" primary="ارتباط با ما" />
         <ListItemButton
           sx={{ flexGrow: 0, display: "flex", justifyContent: "center" }}

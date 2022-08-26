@@ -20,6 +20,7 @@ export const getFilteredData =async ( field , filter)=>{
     return res.data ;     
 }
 
+
 export const deleteData = async (field , id)=>{
     const res = await HttpService.delete(`${field}/${id}`)
     return res.data

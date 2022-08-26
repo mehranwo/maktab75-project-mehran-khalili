@@ -1,5 +1,5 @@
 import { useTheme } from "@mui/material/styles";
-import { Container, Grid, useMediaQuery } from "@mui/material";
+import { Box, Container, Grid, Typography, useMediaQuery } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../../redux/actions/productsActions";
@@ -14,11 +14,10 @@ export default function Products() {
   const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    getData("products").then((data) => dispatch(setProducts(data)));
-  }, []);
+
 
   const renderProducts =
+  
     products &&
     products.map((product) => (
       <Grid
@@ -40,7 +39,47 @@ export default function Products() {
     ));
 
   return (
-    <Layout>
+    <Box>
+    <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "20px",
+          margin: "25px  0px",
+        }}
+      >
+        <Box sx={{ flex: "1" }}>
+          <img
+            src={`http://localhost:3003/files/${products[0]?.src[0]}`}
+            width={"100%"}
+            height={"100%"}
+          />
+        </Box>
+        <Box
+          sx={{
+            flex: "2",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "200px",
+          }}
+        >
+          <Box>
+            <Typography variant="h3">{products[0]?.productName}</Typography>
+          </Box>
+          <Box>
+            <Typography sx={{ fontSize: "14px" }}>
+              لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
+              استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در
+              ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز
+              و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای
+              زیادی در شصت و سه درصد گذشته حال و آینده شناخت فراوان جامعه و
+              متخصصان را می طلبد
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
       <Grid
         container
         justifyContent={"center"}
@@ -50,6 +89,6 @@ export default function Products() {
       >
         {renderProducts}
       </Grid>
-    </Layout>
+      </Box>
   );
 }

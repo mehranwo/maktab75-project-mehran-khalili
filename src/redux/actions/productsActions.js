@@ -26,6 +26,12 @@ export const addProduct = (product) =>{
         payload : product,
     }
 }
+export const selectedBuyProduct = (product) =>{
+    return {
+        type:ActionTypes.BUY_PRODUCT,
+        payload : product,
+    }
+}
 
 
 export const removeSelectedProduct = (product)=>{
